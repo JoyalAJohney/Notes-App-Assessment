@@ -1,4 +1,7 @@
-import { DataSourceOptions } from 'typeorm';
+import * as dotenv from 'dotenv';
+import { DataSource, DataSourceOptions } from 'typeorm';
+
+dotenv.config();
 
 const config: DataSourceOptions = {
   type: 'postgres',
@@ -13,4 +16,6 @@ const config: DataSourceOptions = {
   migrations: ['src/migrations/*.ts'],
 };
 
-export default config;
+const appDataSource = new DataSource(config);
+
+export default appDataSource;
