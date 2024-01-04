@@ -1,10 +1,14 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { User } from './entity/user.entity';
-import { Repository } from 'typeorm';
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
-import { LoginDto, SignUpDto } from './dto/user.dto';
+import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
+import { User } from './entity/user.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { LoginDto, SignUpDto } from './dto/user.dto';
 
 @Injectable()
 export class AuthService {
@@ -14,6 +18,14 @@ export class AuthService {
     private readonly userRepository: Repository<User>,
     private readonly jwtService: JwtService,
   ) {}
+
+  async getUserById(id: string): Promise<User> {
+    const user = await this.userRepository.findOne({ where: { id } });
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    return user;
+  }
 
   async userSignUp(signUpDto: SignUpDto): Promise<User> {
     const hashedPassword = await bcrypt.hash(
