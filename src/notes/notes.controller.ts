@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
   Request,
   UseGuards,
 } from '@nestjs/common';
@@ -23,6 +24,12 @@ export class NotesController {
   getAllNotes(@Request() request): Promise<Notes[]> {
     const userId = request.user.sub;
     return this.notesService.getAllNotesById(userId);
+  }
+
+  @Get('search')
+  searchNotes(@Query('q') query: string, @Request() request) {
+    const userId = request.user.sub;
+    return this.notesService.searchNotes(query, userId);
   }
 
   @Get(':id')

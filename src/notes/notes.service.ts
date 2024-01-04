@@ -65,4 +65,14 @@ export class NotesService {
     const sharedNote = this.sharedNotesRepository.create(input);
     return this.sharedNotesRepository.save(sharedNote);
   }
+
+  async searchNotes(keyword: string, userId: string): Promise<Notes[]> {
+    return this.notesRepository
+      .createQueryBuilder('notes')
+      .where('notes.createdBy = :userId', { userId })
+      .andWhere('notes.header ILIKE :keyword OR notes.content ILIKE :keyword', {
+        keyword: `%${keyword}%`,
+      })
+      .getMany();
+  }
 }
