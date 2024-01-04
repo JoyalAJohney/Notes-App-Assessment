@@ -4,10 +4,12 @@ import {
   DeleteDateColumn,
   Entity,
   PrimaryGeneratedColumn,
+  Unique,
 } from 'typeorm';
 
 @Entity()
-export class User {
+@Unique(['noteId', 'userId'])
+export class SharedNotes {
   @CreateDateColumn()
   createdAt?: Date;
 
@@ -17,9 +19,9 @@ export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ unique: true })
-  username: string;
+  @Column({ type: 'uuid' })
+  noteId: string;
 
-  @Column()
-  password: string;
+  @Column({ type: 'uuid' })
+  userId: string;
 }

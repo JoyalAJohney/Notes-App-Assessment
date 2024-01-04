@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entity/user.entity';
 import { Repository } from 'typeorm';
@@ -24,7 +24,11 @@ export class AuthService {
       username: signUpDto.username,
       password: hashedPassword,
     });
-    return this.userRepository.save(newUser);
+    const user = await this.userRepository.save(newUser);
+    if (user) {
+      delete user.password;
+      return user;
+    }
   }
 
   async userLogin(loginDto: LoginDto): Promise<any> {
@@ -33,7 +37,7 @@ export class AuthService {
     });
 
     if (!user || !(await bcrypt.compare(loginDto.password, user.password))) {
-      throw new Error('Invalid Credentials');
+      throw new UnauthorizedException('Invalid Credentials');
     }
 
     const payload = { username: user.username, sub: user.id };
