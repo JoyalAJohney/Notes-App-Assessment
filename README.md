@@ -22,7 +22,7 @@
 
 ## Setting Up
 
-Create a .env file from the env.sample file. Fill in the values based on your required configuration. A sample configuration is shared below
+Create a .env file from the env.sample file. Fill in the values based on your required configuration. A sample configuration is shared below. Make sure that the .env file is in the same level as docker-compose.yml file
 ```bash
 # Database configuration
 POSTGRES_HOST=localhost 
@@ -44,16 +44,11 @@ THROTTLE_TTL=60000 # 1 minute
 
 ## Running the app
 
+Execute the below command to build the postgres and the application containers
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+$ docker-compose up --build
 ```
+If the application starts perfectly fine, you should be able to head over to http://localhost:3000/api/docs
 
 ## Test
 
@@ -67,17 +62,3 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
