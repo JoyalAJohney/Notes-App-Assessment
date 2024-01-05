@@ -29,4 +29,11 @@ export class Notes {
 
   @Column({ type: 'uuid' })
   createdBy: string;
+
+  @Column({
+    type: 'tsvector',
+    select: false,
+    nullable: true,
+  })
+  searchTerm?: string;
 }

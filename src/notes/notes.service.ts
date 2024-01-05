@@ -71,12 +71,21 @@ export class NotesService {
   }
 
   async searchNotes(keyword: string, userId: string): Promise<Notes[]> {
+    const searchQuery = this.buildSearchQuery(keyword);
     return this.notesRepository
       .createQueryBuilder('notes')
       .where('notes.createdBy = :userId', { userId })
-      .andWhere('notes.header ILIKE :keyword OR notes.content ILIKE :keyword', {
-        keyword: `%${keyword}%`,
-      })
+      .andWhere(`notes."searchTerm" @@ ${searchQuery}`)
+      .addOrderBy(`ts_rank_cd(notes."searchTerm", ${searchQuery})`, 'DESC')
       .getMany();
+  }
+
+  buildSearchQuery(searchKey: string): string {
+    return `to_tsquery('simple', '${this.buildSearchTokens(searchKey)}')`;
+  }
+
+  buildSearchTokens(searchKey: string): string {
+    const words = searchKey.trim().split(/\s+/);
+    return words.join(' & ') + ':*';
   }
 }
