@@ -53,7 +53,8 @@ $ docker-compose up --build
 ```
 If the application starts perfectly fine, you should be able to head over to http://localhost:APP_PORT/api/docs
 
-## Test
+
+## Test Cases
 * Make sure you are running on node version 16 or above
 * Change ```POSTGRES_HOST=localhost``` in .env file when running tests
 
