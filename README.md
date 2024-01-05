@@ -51,7 +51,7 @@ Execute the below command to build the postgres and the application containers
 ```bash
 $ docker-compose up --build
 ```
-If the application starts perfectly fine, you should be able to head over to http://localhost:3000/api/docs
+If the application starts perfectly fine, you should be able to head over to http://localhost:APP_PORT/api/docs
 
 ## Test
 
