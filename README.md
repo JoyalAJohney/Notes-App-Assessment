@@ -28,12 +28,26 @@
 * <img src="https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white" alt="Postgres Badge"> Postgres as the choice of Relational Database
   
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Setting Up
 
-## Installation
-
+Create a .env file from the env.sample file. Fill in the values based on your required configuration. A sample configuration is shared below
 ```bash
-$ npm install
+# Database configuration
+POSTGRES_HOST=localhost 
+POSTGRES_PORT=5432
+POSTGRES_DB=notes_db
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+
+# App configuration
+APP_PORT=3000
+
+# JWT configuration
+JWT_SECRET=4c8a09f4b8f234b4e7b9f0b1c5e7c8b8
+
+# Rate limit configuration
+THROTTLE_LIMIT=5
+THROTTLE_TTL=60000 # 1 minute
 ```
 
 ## Running the app
