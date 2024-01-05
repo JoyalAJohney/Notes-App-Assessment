@@ -11,7 +11,7 @@
     <br />
     <a href="https://github.com/JoyalAJohney/Notes-App-Assessment/"><strong>Explore the docs »</strong></a>
     <br />
-    [![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)]
+    ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
     *
     [![NestJS](https://img.shields.io/badge/nestjs-%23E0234E.svg?style=for-the-badge&logo=nestjs&logoColor=white)]
     *
