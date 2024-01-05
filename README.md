@@ -28,7 +28,7 @@
   
 ```bash
 # Database configuration
-POSTGRES_HOST=localhost 
+POSTGRES_HOST=postgres 
 POSTGRES_PORT=5432
 POSTGRES_DB=notes_db
 POSTGRES_USER=postgres
