@@ -18,14 +18,6 @@
   *
   <img src="https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white" alt="Postgres Badge">
 </div>
-
-
-
-## Description
-
-### Build with
-* <img src="https://img.shields.io/badge/nestjs-%23E0234E.svg?style=for-the-badge&logo=nestjs&logoColor=white" alt="NestJS Badge"> Used NestJS as the backend framework for building out the notes app
-* <img src="https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white" alt="Postgres Badge"> Postgres as the choice of Relational Database
   
 
 ## Setting Up
