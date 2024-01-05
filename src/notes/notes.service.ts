@@ -24,13 +24,17 @@ export class NotesService {
     });
   }
 
-  getNoteById(id: string, userId: string): Promise<Notes> {
-    return this.notesRepository.findOne({
+  async getNoteById(id: string, userId: string): Promise<Notes> {
+    const note = await this.notesRepository.findOne({
       where: {
         id,
         createdBy: userId,
       },
     });
+    if (!note) {
+      throw new NotFoundException('Note not found');
+    }
+    return note;
   }
 
   async createNote(input: CreateNoteDto, userId: string) {
