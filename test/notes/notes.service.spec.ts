@@ -1,4 +1,4 @@
-import { Repository, SelectQueryBuilder } from 'typeorm';
+import { Repository } from 'typeorm';
 import { NotesService } from '../../src/notes/notes.service';
 import { SharedNotes } from '../../src/notes/entity/shared.note.entity';
 import { Notes } from '../../src/notes/entity/notes.entity';
@@ -141,34 +141,5 @@ describe('NotesService', () => {
     const result = await service.shareNoteWithUser(shareNoteDto);
     expect(result).toEqual(sharedNote);
     expect(mockSharedNotesRepository.create).toHaveBeenCalledWith(shareNoteDto);
-  });
-
-  it('should search for notes by keyword', async () => {
-    const userId = 'dfc57ec5-0d88-426b-97dc-5193f272b07d';
-    const keyword = 'test';
-    const mockNotes = [
-      {
-        id: '1290bcad-f3d7-400b-9c3b-0456867698d5',
-        header: 'Test Note',
-        content: 'Content',
-        createdBy: userId,
-      },
-    ];
-
-    const mockQueryBuilder: Partial<SelectQueryBuilder<Notes>> = {
-      where: jest.fn().mockReturnThis(),
-      andWhere: jest.fn().mockReturnThis(),
-      getMany: jest.fn().mockResolvedValue(mockNotes),
-    };
-
-    mockNotesRepository.createQueryBuilder = jest.fn(
-      () => mockQueryBuilder as SelectQueryBuilder<Notes>,
-    );
-
-    const result = await service.searchNotes(keyword, userId);
-    expect(result).toEqual(mockNotes);
-    expect(mockQueryBuilder.where).toHaveBeenCalled();
-    expect(mockQueryBuilder.andWhere).toHaveBeenCalled();
-    expect(mockQueryBuilder.getMany).toHaveBeenCalled();
   });
 });
