@@ -22,7 +22,10 @@
 
 ## Setting Up
 
-Create a .env file from the env.sample file. Fill in the values based on your required configuration. A sample configuration is shared below. Make sure that the .env file is in the same level as docker-compose.yml file
+* Create a .env file from the env.sample file.
+* Fill in the values based on your required configuration.
+* Make sure that the .env file is in the same level as docker-compose.yml file
+  
 ```bash
 # Database configuration
 POSTGRES_HOST=localhost 
